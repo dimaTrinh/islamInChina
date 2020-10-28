@@ -8,7 +8,7 @@ class Person(models.Model):
     last_name = models.CharField("Last Name", max_length=100, blank=True)
     first_name = models.CharField("First Name", max_length=100, blank=True)
     middle_name = models.CharField(
-        "Middle Name", max_length=100, blank=True, null=True)
+        "Middle Name", max_length=100, blank=True)
 
     gender = models.CharField("Gender", blank=True, max_length=20)
 
@@ -27,11 +27,11 @@ class Person(models.Model):
              ('ot', 'Others'))
 
     type_of = models.CharField("Roles of the person",
-                               max_length=2, choices=ROLES, blank=True, null=True,
+                               max_length=2, choices=ROLES, blank=True,
                                default='au')
 
     # Works that the person has been involved with, either as author or translators
-    related_works = models.ManyToManyField("Work")
+    related_works = models.ManyToManyField("Work", blank=True)
 
     notes = models.TextField("Note Field", blank=True,
                              null=True, max_length=100)
@@ -39,7 +39,7 @@ class Person(models.Model):
         "Biography Note Field", blank=True, null=True, max_length=100)
 
     def __str__(self):
-        return self.first_name + " " + self.middle_name + " " + self.last_name + " " + self.type_of
+        return self.first_name + " " + self.last_name
 
 
 class Place(models.Model):
